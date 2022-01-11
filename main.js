@@ -56,6 +56,9 @@ const posts = [
     }
 ];
 
+let postLikes = [];
+
+
 
 function creazionePost( posts ){
     document.querySelector(".posts-list").innerHTML +=
@@ -108,13 +111,19 @@ let likePostCounter = document.getElementById(".js-likes-counter")
         if(likeButtonIcon[i].classList.contains('like-button--liked')){
             likeButtonIcon[i].classList.remove("like-button--liked");
             likeButtonLabel[i].classList.remove("like-button--liked");
-            likePostCounter.innerHTML -= (parseInt(1))
+            likePostCounter.innerHTML = (parseInt( likePostCounter.innerHTML ) - 1 )
+            //postLikes.splice([i],1)
+            //console.log([i])
         }else{
             likeButtonIcon[i].classList.add("like-button--liked");
             likeButtonLabel[i].classList.add("like-button--liked");
-            likePostCounter.innerHTML += (parseInt(1))
+            likePostCounter.innerHTML = (parseInt( likePostCounter.innerHTML ) + 1 )
+            postLikes.push([i+1])
+            
         }
+        console.log(postLikes)
     })}
+    
 
 
 

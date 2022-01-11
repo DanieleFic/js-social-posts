@@ -84,7 +84,7 @@ function creazionePost( posts ){
                         </a>
                     </div>
                     <div class="likes__counter">
-                        Piace a <b id="like-counter-1"  class="js-likes-counter">${posts.likes}</b> persone
+                        Piace a <b id="${posts.id}"  class="js-likes-counter">${posts.likes}</b> persone
                     </div>
                 </div> 
             </div> `           
@@ -98,18 +98,21 @@ for(let i=0; i < posts.length; i++){
 let likeButton = document.querySelectorAll(".like-button");
 let likeButtonIcon = document.querySelectorAll(".like-button__icon");
 let likeButtonLabel = document.querySelectorAll(".like-button__label")
-let likePostCounter = document.querySelectorAll(".js-likes-counter")
-console.log(posts.likes)
+let likePostCounter = document.getElementById(".js-likes-counter")
+
 
     for (let i = 0; i < likeButton.length; i++){
         likeButton[i].addEventListener("click", function(){
-        
+        let likePostCounter = document.getElementById(parseInt(i+1))
+        console.log(likePostCounter)
         if(likeButtonIcon[i].classList.contains('like-button--liked')){
             likeButtonIcon[i].classList.remove("like-button--liked");
             likeButtonLabel[i].classList.remove("like-button--liked");
+            likePostCounter.innerHTML -= (parseInt(1))
         }else{
             likeButtonIcon[i].classList.add("like-button--liked");
             likeButtonLabel[i].classList.add("like-button--liked");
+            likePostCounter.innerHTML += (parseInt(1))
         }
     })}
 

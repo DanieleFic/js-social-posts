@@ -57,6 +57,8 @@ const posts = [
 ];
 
 
+
+
 function creazionePost( posts ){
     document.querySelector(".posts-list").innerHTML +=
     `<div class="post">
@@ -71,25 +73,36 @@ function creazionePost( posts ){
                     </div>                    
                 </div>
             </div>
-            <div class="post__text">>${posts.content}</div>
+            <div class="post__text">${posts.content}</div>
             <div class="post__image">
                 <img src="${posts.media}" alt="">
             </div>
             <div class="post__footer">
                 <div class="likes js-likes">
                     <div class="likes__cta">
-                        <a class="like-button  js-like-button" href="#" data-postid="1">
+                        <a class="like-button  js-like-button" id="like" href="#" data-postid="${posts.id}">
                             <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                             <span class="like-button__label">Mi Piace</span>
                         </a>
                     </div>
                     <div class="likes__counter">
-                        Piace a <b id="like-counter-1" class="js-likes-counter">${posts.likes}</b> persone
+                        Piace a <b id="like-counter-1"  class="js-likes-counter">${posts.likes}</b> persone
                     </div>
                 </div> 
             </div> `           
   }
 
-  for(let i=0; i < posts.length; i++){
+for(let i=0; i < posts.length; i++){
     creazionePost( posts[i] )
-  }
+}
+
+
+let likeButton = document.querySelectorAll(".like-button");
+let likeButtonIcon = document.querySelector(".like-button__icon");
+let likeButtonLabel = document.querySelector(".like-button__label")
+console.log(likeButton)
+
+likeButton.addEventListener("click", function(){
+    likeButtonIcon.classList.add("like-button--liked");
+    likeButtonLabel.classList.add("like-button--liked");
+})

@@ -38,7 +38,7 @@ const posts = [
         "media": "https://unsplash.it/600/400?image=24",
         "author": {
             "name": "Luca Formicola",
-            "image": null
+            "image": "null"
         },
         "likes": 56,
         "created": "2021-04-03"
@@ -99,18 +99,62 @@ function creazionePost( posts ){
 function stampaPost( arrayPost ){
     for(let i=0; i < arrayPost.length; i++){
         creazionePost( arrayPost[i] )
+        /*let dataAmericana = arrayPost[i].created.split("-");
+        console.log(dataAmericana)
+        let dataItaliana = dataAmericana[2] + "-" +dataAmericana[1] + "-" + dataAmericana[0]
+        //console.log(dataItaliana)
+        let dataContainer = document.querySelectorAll(".post-meta__time");
+        dataContainer.innerHTML = dataItaliana
+        //console.log(dataContainer)*/
 }}
 
 stampaPost( posts )
 
-/*
-let dataAmericana = posts[i].created.split("-");
+/*if(posts[i].author.image == null){
+    posts[i].author.image = "??"
+    console.log(posts[i].author.image)
+}*/
+
+
+/*objIndex = posts.findIndex((obj => obj.id == 1));
+
+//Log object to Console.
+console.log("Before update: ", posts[objIndex])
+
+//Update object's name property.
+posts[objIndex].created = "Laila"
+
+//Log object to console again.
+console.log("After update: ", posts[objIndex])
+*/
+
+posts.forEach((element, index) => {
+    if(element.author.image == "null") {
+        element[index] = "??";
+        console.log(element[index])
+        element[index].innerHTML  = "??";
+    }
+});
+
+/*let dataAmericana = posts[i].created.split("-");
 let dataItaliana = dataAmericana[2] + "-" +dataAmericana[1] + "-" + dataAmericana[0]
 console.log(dataItaliana)
 let dataContainer = document.querySelectorAll(".post-meta__time");
 dataContainer.innerHTML = dataItaliana
-//console.log(dataContainer)
-}*/
+//console.log(dataContainer)*/
+
+
+let newArr = posts.map(obj => {
+    if (obj.author.image == "null") {
+    return {...obj.author, image: '??'};
+}
+
+return obj;
+});
+
+console.log(newArr);
+
+
 
 
 let likeButton = document.querySelectorAll(".like-button");

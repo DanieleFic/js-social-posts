@@ -1,7 +1,7 @@
 const posts = [
     {
         "id": 1,
-        "content": "Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.",
+        "content": "La pioggia è quella che ti fa correre per andare sotto il primo tendone che trovi, visto che hai dimenticato l'ombrello a casa. E' l'acqua che scende dal cielo, quando le nubi grigie si addensano. E se fuori cade la pioggia, tu cosa fai? Leggi la vasta raccolta di frasi, aforismi e citazioni sulla pioggia che abbiamo selezionato per te!",
         "media": "https://unsplash.it/600/300?image=171",
         "author": {
             "name": "Phil Mangione",
@@ -12,7 +12,7 @@ const posts = [
     },
     {
         "id": 2,
-        "content": "Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.",
+        "content": "I buoni hanno il viso di pane, le guance di mollica e gli occhi dorati come il grano. Solo nel sorriso si vede una linea più spessa, come una crosta indurita dalle avversità",
         "media": "https://unsplash.it/600/400?image=112",
         "author": {
             "name": "Sofia Perlari",
@@ -23,7 +23,7 @@ const posts = [
     },
     {
         "id": 3,
-        "content": "Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.",
+        "content": "Se sei abbastanza fortunato di aver vissuto a Parigi come un giovane uomo, allora per il resto della tua vita ovunque andrai, sarà con te, a Parigi è un continuo banchettare.",
         "media": "https://unsplash.it/600/400?image=234",
         "author": {
             "name": "Chiara Passaro",
@@ -34,7 +34,7 @@ const posts = [
     },
     {
         "id": 4,
-        "content": "Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.",
+        "content": "“Ogni lettore, quando legge, legge se stesso. L’opera dello scrittore è soltanto uno strumento ottico offerto al lettore per permettergli di discernere quello che, senza libro, non avrebbe forse visto in se stesso”.",
         "media": "https://unsplash.it/600/400?image=24",
         "author": {
             "name": "Luca Formicola",
@@ -45,7 +45,7 @@ const posts = [
     },
     {
         "id": 5,
-        "content": "Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.",
+        "content": "La scuola è il nostro passaporto per il futuro, poiché il domani appartiene a coloro che oggi si preparano ad affrontarlo.",
         "media": "https://unsplash.it/600/400?image=534",
         "author": {
             "name": "Alessandro Sainato",
@@ -58,15 +58,17 @@ const posts = [
 
 let postLikes = [];
 
+let container2 = document.getElementById("container");
 
 
 function creazionePost( posts ){
-    document.querySelector(".posts-list").innerHTML +=
+    container2.innerHTML +=
     `<div class="post">
     <div class="post__header">
                 <div class="post-meta">                    
                     <div class="post-meta__icon">
-                        <img class="profile-pic" src="${posts.author.image}" alt="Phil Mangione">                    
+                    
+                        <img class="profile-pic" src="${posts.author.image}" alt="${posts.author.name}">                    
                     </div>
                     <div class="post-meta__data" id="container">
                         <div class="post-meta__author">${posts.author.name}</div>
@@ -93,9 +95,22 @@ function creazionePost( posts ){
             </div> `           
   }
 
-for(let i=0; i < posts.length; i++){
-    creazionePost( posts[i] )
-}
+
+function stampaPost( arrayPost ){
+    for(let i=0; i < arrayPost.length; i++){
+        creazionePost( arrayPost[i] )
+}}
+
+stampaPost( posts )
+
+/*
+let dataAmericana = posts[i].created.split("-");
+let dataItaliana = dataAmericana[2] + "-" +dataAmericana[1] + "-" + dataAmericana[0]
+console.log(dataItaliana)
+let dataContainer = document.querySelectorAll(".post-meta__time");
+dataContainer.innerHTML = dataItaliana
+//console.log(dataContainer)
+}*/
 
 
 let likeButton = document.querySelectorAll(".like-button");
@@ -104,26 +119,26 @@ let likeButtonLabel = document.querySelectorAll(".like-button__label")
 let likePostCounter = document.getElementById(".js-likes-counter")
 
 
-    for (let i = 0; i < likeButton.length; i++){
-        likeButton[i].addEventListener("click", function(){
-        let likePostCounter = document.getElementById(parseInt(i+1))
-        console.log(likePostCounter)
-        if(likeButtonIcon[i].classList.contains('like-button--liked')){
-            likeButtonIcon[i].classList.remove("like-button--liked");
-            likeButtonLabel[i].classList.remove("like-button--liked");
-            likePostCounter.innerHTML = (parseInt( likePostCounter.innerHTML ) - 1 )
-            //postLikes.splice([i],1)
-            //console.log([i])
-        }else{
-            likeButtonIcon[i].classList.add("like-button--liked");
-            likeButtonLabel[i].classList.add("like-button--liked");
-            likePostCounter.innerHTML = (parseInt( likePostCounter.innerHTML ) + 1 )
-            postLikes.push([i+1])
-            
-        }
-        console.log(postLikes)
-    })}
-    
+for (let i = 0; i < likeButton.length; i++){
+    likeButton[i].addEventListener("click", function(){
+    let likePostCounter = document.getElementById(parseInt(i+1))
+    console.log(likePostCounter)
+    if(likeButtonIcon[i].classList.contains('like-button--liked')){
+        likeButtonIcon[i].classList.remove("like-button--liked");
+        likeButtonLabel[i].classList.remove("like-button--liked");
+        likePostCounter.innerHTML = (parseInt( likePostCounter.innerHTML ) - 1 )
+        //postLikes.splice([i],1)
+        //console.log([i])
+    }else{
+        likeButtonIcon[i].classList.add("like-button--liked");
+        likeButtonLabel[i].classList.add("like-button--liked");
+        likePostCounter.innerHTML = (parseInt( likePostCounter.innerHTML ) + 1 )
+        postLikes.push([i+1])
+        
+    }
+    console.log(postLikes)
+})}
+
 
 
 

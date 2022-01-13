@@ -62,17 +62,26 @@ let container2 = document.getElementById("container");
 
 
 function creazionePost( posts ){
+    let immagineValida = '';
+    if(posts.author.image == "null"){
+        immagineValida = "https://www.pngfind.com/pngs/m/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.png"
+    }else{
+    immagineValida = posts.author.image
+
+    }
+        let dataAmericana = posts.created.split("-");
+        let dataItaliana = dataAmericana[2] + "-" +dataAmericana[1] + "-" + dataAmericana[0]
     container2.innerHTML +=
     `<div class="post">
     <div class="post__header">
                 <div class="post-meta">                    
                     <div class="post-meta__icon">
                     
-                        <img class="profile-pic" src="${posts.author.image}" alt="${posts.author.name}">                    
+                        <img class="profile-pic" src="${immagineValida}" alt="${posts.author.name}">                    
                     </div>
                     <div class="post-meta__data" id="container">
                         <div class="post-meta__author">${posts.author.name}</div>
-                        <div class="post-meta__time">${posts.created}</div>
+                        <div class="post-meta__time">${dataItaliana}</div>
                     </div>                    
                 </div>
             </div>
@@ -99,61 +108,9 @@ function creazionePost( posts ){
 function stampaPost( arrayPost ){
     for(let i=0; i < arrayPost.length; i++){
         creazionePost( arrayPost[i] )
-        /*let dataAmericana = arrayPost[i].created.split("-");
-        console.log(dataAmericana)
-        let dataItaliana = dataAmericana[2] + "-" +dataAmericana[1] + "-" + dataAmericana[0]
-        //console.log(dataItaliana)
-        let dataContainer = document.querySelectorAll(".post-meta__time");
-        dataContainer.innerHTML = dataItaliana
-        //console.log(dataContainer)*/
 }}
 
 stampaPost( posts )
-
-/*if(posts[i].author.image == null){
-    posts[i].author.image = "??"
-    console.log(posts[i].author.image)
-}*/
-
-
-/*objIndex = posts.findIndex((obj => obj.id == 1));
-
-//Log object to Console.
-console.log("Before update: ", posts[objIndex])
-
-//Update object's name property.
-posts[objIndex].created = "Laila"
-
-//Log object to console again.
-console.log("After update: ", posts[objIndex])
-*/
-
-posts.forEach((element, index) => {
-    if(element.author.image == "null") {
-        element[index] = "??";
-        console.log(element[index])
-        element[index].innerHTML  = "??";
-    }
-});
-
-/*let dataAmericana = posts[i].created.split("-");
-let dataItaliana = dataAmericana[2] + "-" +dataAmericana[1] + "-" + dataAmericana[0]
-console.log(dataItaliana)
-let dataContainer = document.querySelectorAll(".post-meta__time");
-dataContainer.innerHTML = dataItaliana
-//console.log(dataContainer)*/
-
-
-let newArr = posts.map(obj => {
-    if (obj.author.image == "null") {
-    return {...obj.author, image: '??'};
-}
-
-return obj;
-});
-
-console.log(newArr);
-
 
 
 
@@ -171,14 +128,11 @@ for (let i = 0; i < likeButton.length; i++){
         likeButtonIcon[i].classList.remove("like-button--liked");
         likeButtonLabel[i].classList.remove("like-button--liked");
         likePostCounter.innerHTML = (parseInt( likePostCounter.innerHTML ) - 1 )
-        //postLikes.splice([i],1)
-        //console.log([i])
     }else{
         likeButtonIcon[i].classList.add("like-button--liked");
         likeButtonLabel[i].classList.add("like-button--liked");
         likePostCounter.innerHTML = (parseInt( likePostCounter.innerHTML ) + 1 )
         postLikes.push([i+1])
-        
     }
     console.log(postLikes)
 })}

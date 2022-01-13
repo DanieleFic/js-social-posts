@@ -112,6 +112,26 @@ function stampaPost( arrayPost ){
 
 stampaPost( posts )
 
+/*posts.forEach((element, index) => {
+    if(element.author.image == "null") {
+        element[index] = "??";
+        console.log(element[index])
+        element[index].innerHTML  = "??";
+    }
+});*/
+
+
+/*let newArr = posts.map(obj => {
+    if (obj.author.image == "null") {
+    return {...obj.author, image: '??'};
+}
+
+return obj;
+});
+
+console.log(newArr);*/
+
+
 
 
 let likeButton = document.querySelectorAll(".like-button");
@@ -128,11 +148,14 @@ for (let i = 0; i < likeButton.length; i++){
         likeButtonIcon[i].classList.remove("like-button--liked");
         likeButtonLabel[i].classList.remove("like-button--liked");
         likePostCounter.innerHTML = (parseInt( likePostCounter.innerHTML ) - 1 )
+        //postLikes.splice([i],1)
+        //console.log([i])
     }else{
         likeButtonIcon[i].classList.add("like-button--liked");
         likeButtonLabel[i].classList.add("like-button--liked");
         likePostCounter.innerHTML = (parseInt( likePostCounter.innerHTML ) + 1 )
         postLikes.push([i+1])
+        
     }
     console.log(postLikes)
 })}
